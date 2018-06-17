@@ -363,9 +363,7 @@ static int copy_file(const char *source, const char *destination) {
     return ret;
 }
 
-
-
-
+void
 read_filters(index_dir, dofilter)
 char	*index_dir;
 int	dofilter;
@@ -1460,6 +1458,7 @@ get_filename_index(name)
 	return e->index;
 }
 
+void
 insert_filename(name, name_index)
 	char	*name;
 	int	name_index;
@@ -1512,6 +1511,7 @@ insert_filename(name, name_index)
 	(*pe)->index = name_index;
 }
 
+void
 change_filename(name, len, index, newname)
 	char	*name;
 	int	len;
@@ -1534,6 +1534,7 @@ change_filename(name, len, index, newname)
 	return;
 }
 
+void
 delete_filename(name, name_index)
 	char	*name;
 	int	name_index;

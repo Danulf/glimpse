@@ -47,6 +47,10 @@ extern struct stat incstbuf;
 
 void insert_h();
 void insert_index();
+void remove_filename(int,int);
+void build_hash();
+void merge_in(FILE*, FILE*, FILE*);
+void init_hash_table();
 
 extern int ICurrentFileOffset;
 extern int NextICurrentFileOffset;
@@ -125,6 +129,7 @@ extern struct  indices *ip;
 extern int HashTableSize;
 struct token **hash_table; /*[MAX_64K_HASH];*/
 
+void
 build_index()
 {
 	int	i;
@@ -599,6 +604,7 @@ next_token:
 #endif
 }
 
+void
 traverse1()
 {
     FILE *i1, *i2, *i3;
@@ -781,6 +787,7 @@ build_hash():
 input: a set of filenames in name_list[], a partition table p_table[]
 output: a hash table hash_table[].
 -----------------------------------------------------------------------*/
+void
 build_hash()
 {
     int	fd;                          /* opened file number */
@@ -1230,6 +1237,7 @@ try_again_1:
     my_free(buffer_begin, BLOCK_SIZE + 10);
 }
 
+void
 init_hash_table()
 {
     int i;
@@ -1481,6 +1489,7 @@ extern unsigned char *dest_index_buf;
 extern unsigned char *merge_index_buf;
 
 /* merge index file f1 and f2, then put the result in index file f3 */
+void
 merge_in(f1, f2, f3)
 FILE *f1, *f2, *f3;
 {
@@ -1895,6 +1904,7 @@ fprintf(stderr,"Realloc #4, new size is %d\n",merge_index_buf);
     return;
 }
 
+void
 remove_filename(fileindex, new_partition)
 	int	fileindex, new_partition;
 {
@@ -1943,6 +1953,7 @@ get_removed_indices()
 
 /* returns a -ve number if there is no newfileindex for this file (deleted from index), or the new index otherwise */
 /* length_of_deletedlist = MaxNum24bPartition + 1 - get_new_index(deletedlist, MaxNum24bPartition + 1); */
+int
 get_new_index(deletedlist, oldfileindex)
 	struct indices	*deletedlist;
 	int	oldfileindex;
@@ -1962,6 +1973,7 @@ get_new_index(deletedlist, oldfileindex)
 	return oldfileindex;	/* crossed the limit */
 }
 
+int
 delete_removed_indices(deletedlist)
 	struct indices *deletedlist;
 {

@@ -288,6 +288,7 @@ int	flags;
 	return 1;
 }
 
+void
 uninitialize_common()
 {
 	initialize_common_done = 0;

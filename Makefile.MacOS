@@ -1,21 +1,21 @@
 # Copyright (c) 1994 Sun Wu, Udi Manber, Burra Gopal.  All Rights Reserved.
 
-srcdir = @srcdir@
-VPATH  = @srcdir@
+srcdir = .
+
 SHELL  = /bin/sh
-CC     = @CC@
-LIBS   = @LIBS@
-CP     = @CP@
-STRIP  = @STRIP@
-INSTALL		= @INSTALL@
-INSTALL_PROGRAM = @INSTALL_PROGRAM@
-INSTALL_DATA	= @INSTALL_DATA@
+CC     = gcc
+LIBS   = -lc -lm 
+CP     = /bin/cp
+STRIP  = 
+INSTALL		= /usr/bin/install -c
+INSTALL_PROGRAM = ${INSTALL}
+INSTALL_DATA	= ${INSTALL} -m 644
 INSTALL_MAN	= ${INSTALL} -m 444
 DEFS		=
-DYNFILTER	= @DYNFILTER@
+DYNFILTER	= 
 
-prefix = @prefix@
-exec_prefix = @exec_prefix@
+prefix = /usr/local
+exec_prefix = ${prefix}
 binprefix =
 manprefix =
 
@@ -78,7 +78,7 @@ SRC		= main.c \
 		$(INDEXDIR)/memlook.c \
 		$(INDEXDIR)/io.c
 
-all:	build-sub @TARGET@
+all:	build-sub NOTSall
 Sall:		$(PROG) $(PROGSERVER) $(PROGINDEX) 
 agrep:		$(PROGAGREP)
 NOTSall:	$(NOTSPROG) $(NOTSPROGSERVER)
